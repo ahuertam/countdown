@@ -2,17 +2,10 @@ import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
 import Countdown from "./components/Countdown.jsx";
 import * as THREE from "three";
+import Gallery from "./components/Gallery.jsx";
+import Video from "./components/Video.jsx";
 import "./App.css";
 
-const Gallery = () => {
-  // Implementa tu galería de fotos aquí
-  return <div>Galería de Fotos</div>;
-};
-
-const Video = () => {
-  // Implementa tu video aquí
-  return <div>Video</div>;
-};
 function App() {
   const [code, setCode] = useState("");
   const [scene, setScene] = useState("main");
