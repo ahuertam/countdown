@@ -8,6 +8,7 @@ const RotatingCube = ({ position }) => {
   const [clickRotation, setClickRotation] = useState([0, 0, 0]);
 
   const textures = useLoader(TextureLoader, [
+    // TODO usar links externos para no cargarlos en github
     "src/assets/1.png",
     "src/assets/2.png",
     "src/assets/3.png",

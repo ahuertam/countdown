@@ -51,8 +51,8 @@ function App() {
           />
         )}
         {scene === "gallery" && <Gallery />}
-        {scene === "video" && <Video />}
       </Canvas>
+      {scene === "video" && <Video />}
     </>
   );
 }
