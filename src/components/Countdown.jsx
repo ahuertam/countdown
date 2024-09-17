@@ -5,6 +5,7 @@ import { Text } from "@react-three/drei";
 const Countdown = ({ targetDate }) => {
   const [timeLeft, setTimeLeft] = useState("");
   const [rotation, setRotation] = useState([0, 0, 0]);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,23 +30,25 @@ const Countdown = ({ targetDate }) => {
   }, [targetDate]);
 
   useFrame(() => {
-    if (rotation[1] !== 0) {
-      setRotation([0, rotation[1] - 0.01, 0]);
+    if (!isHovered) {
+      setRotation((prevRotation) => [
+        prevRotation[0],
+        prevRotation[1] + 0.01,
+        prevRotation[2],
+      ]);
     }
   });
 
   return (
-    <>
-      <Text
-        position={[0, 0, 0]}
-        fontSize={1}
-        rotation={rotation}
-        onPointerOver={() => setRotation([0, Math.PI / 2, 0])}
-        onPointerOut={() => setRotation([0, 0, 0])}
-      >
-        {timeLeft}
-      </Text>
-    </>
+    <Text
+      position={[0, 0, 0]}
+      fontSize={1}
+      rotation={rotation}
+      onPointerOver={() => setIsHovered(true)}
+      onPointerOut={() => setIsHovered(false)}
+    >
+      {timeLeft}
+    </Text>
   );
 };
 

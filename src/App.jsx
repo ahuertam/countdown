@@ -10,8 +10,15 @@ function App() {
   const [code, setCode] = useState("");
   const [scene, setScene] = useState("main");
   const targetDate = new Date("2024-12-20T23:59:59");
+  const validCodes = ["main", "gallery", "video"];
   const handleCodeSubmit = (e) => {
     e.preventDefault();
+    if (!validCodes.includes(code)) 
+      {
+        setScene('main');
+        return;
+      }
+
     setScene(code);
   };
   return (
@@ -26,7 +33,7 @@ function App() {
           onChange={(e) => setCode(e.target.value)}
           placeholder="Introduce el código"
         />
-        <button type="submit">Cargar Escena</button>
+        <button type="submit">Comprobar</button>
       </form>
       <Canvas
         style={{ background: "black" }}
