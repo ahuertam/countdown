@@ -6,6 +6,7 @@ const Countdown = ({ targetDate }) => {
   const [timeLeft, setTimeLeft] = useState("");
   const [rotation, setRotation] = useState([0, 0, 0]);
   const [isHovered, setIsHovered] = useState(false);
+  const [fontSize, setFontSize] = useState(1);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,6 +30,21 @@ const Countdown = ({ targetDate }) => {
     return () => clearInterval(interval);
   }, [targetDate]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setFontSize(0.5);
+      } else {
+        setFontSize(1);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useFrame(() => {
     if (!isHovered) {
       setRotation((prevRotation) => [
@@ -42,7 +58,7 @@ const Countdown = ({ targetDate }) => {
   return (
     <Text
       position={[0, 0, 0]}
-      fontSize={1}
+      fontSize={fontSize}
       rotation={rotation}
       onPointerOver={() => setIsHovered(true)}
       onPointerOut={() => setIsHovered(false)}
